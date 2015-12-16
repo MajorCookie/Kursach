@@ -156,7 +156,32 @@ void main(void)
 				
 				break;
 			case 3:
-				
+				PORTB.0 = 1; 
+				delay_ms(100);
+				PORTB.1 = 1; 
+				delay_ms(100);
+				PORTB.2 = 1; 
+				delay_ms(100);
+				PORTB.0 = 0;
+				PORTB.3 = 1; 
+				delay_ms(100)
+				PORTB.1 = 0;
+				PORTB.4 = 1; 
+				delay_ms(100);
+				PORTB.2 = 0;
+				PORTB.5 = 1; 
+				delay_ms(100);
+				PORTB.3 = 0;
+				PORTB.6 = 1; 
+				delay_ms(100);
+				PORTB.4 = 0;
+				delay_ms(100);
+				PORTB.5 = 0;
+				delay_ms(100);
+				PORTB.6 = 0;
+				delay_ms(100);
+
+				break;
 		}
 	}
 }
