@@ -182,6 +182,10 @@ void main(void)
 				delay_ms(100);
 
 				break;
+			default:
+				PORTB.0 = 1; 
+				delay_ms(500);
+				PORTB.0 = 0;
 		}
 	}
 }
