@@ -26,6 +26,14 @@ Data Stack size         : 256
 
 void main(void)
 {
+	/*
+		0: default mode, all diods blink
+		1: switch 1 by 1 to right
+		2: switch 1 by 1 to left
+		3: snake move
+		4: deviation indicator
+	*/
+	int MODE = 0;
 
 	PORTD=0b00000001;
 	DDRD=0b00000000;
@@ -35,15 +43,7 @@ void main(void)
 
 	PORTB=0b00000000;
 	DDRB=0b00111111;
-	
-	/*
-		0: default mode, all diods blink
-		1: switch 1 by 1 to right
-		2: switch 1 by 1 to left
-		3: snake move
-		4: deviation indicator
-	*/
-	int MODE = 0;
+
 
 	while (1) PIND.0 == 1{
 
