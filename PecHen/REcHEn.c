@@ -59,7 +59,7 @@ void main(void)
 		}
 		
 		if (MODE==0){
-			for( i = 1; i < 30; i++; ){
+			for( i = 1; i < 30; i++ ){
 				if (DEBUG_STATE==0){
 					DEBUG_STATE=1;
 					PORTB.7 = 1;
@@ -75,8 +75,8 @@ void main(void)
 		}else if (MODE==1){
 			PORTB.7 = 1; 
 			delay_ms(6000);
-		}else if (MODE=2){
-			for( i = 1; i < 15; i++; ){
+		}else if (MODE==2){
+			for( i = 1; i < 15; i++ ){
 				if (DEBUG_STATE==0){
 					DEBUG_STATE=1;
 					PORTB.7 = 1;
@@ -90,7 +90,7 @@ void main(void)
 			PORTB.7 = 1; 
 			delay_ms(3000);
 		}else if (MODE==3){
-			for( i = 1; i < 15; i++; ){
+			for( i = 1; i < 15; i++ ){
 				if (DEBUG_STATE==0){
 					DEBUG_STATE=1;
 					PORTB.7 = 1;
