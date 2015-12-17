@@ -31,7 +31,6 @@ void main(void)
 		1: switch 1 by 1 to right
 		2: switch 1 by 1 to left
 		3: snake move
-		4: deviation indicator
 	*/
 	int MODE = 0;
 
@@ -46,12 +45,6 @@ void main(void)
 
 
 	while (1){
-		//debugging
-		PORTB.6 = 0;
-		PORTB.7 = 0;
-		delay_ms(100);
-		PORTB.6 = 1;
-		PORTB.7 = 1;
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
@@ -61,6 +54,100 @@ void main(void)
 			}else{
 				MODE = MODE + 1;
 			}
+		}else{
+			// мигают 2 светодиода 3 раза, горят 2 светодиода 3 секунды в конце
+			PORTB.7 = 0; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 1;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 1;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 1;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 1;
+			delay_ms(3000);
+		}
+		
+		if (MODE==0){
+			// горят 3 светодиода в начале 3 секунды
+			PORTB.7 = 1; 
+			PORTB.8 = 1;
+			delay_ms(3000);
+		}else if (MODE==1){
+			PORTB.8 = 0;
+			// моргает первый светодиод
+			PORTB.7 = 1; 
+			delay_ms(600);
+			PORTB.7 = 0; 
+			delay_ms(600);
+			PORTB.7 = 1; 
+			delay_ms(600);
+			PORTB.7 = 0; 
+			delay_ms(600);
+			PORTB.7 = 1; 
+			delay_ms(600);
+			PORTB.7 = 0; 
+			delay_ms(600);
+			PORTB.7 = 1; 
+			delay_ms(3000);
+		}else if (MODE=2){
+			PORTB.7 = 0;
+			// моргает второй  светодиод
+			PORTB.8 = 1; 
+			delay_ms(600);
+			PORTB.8 = 0; 
+			delay_ms(600);
+			PORTB.8 = 1; 
+			delay_ms(600);
+			PORTB.8 = 0; 
+			delay_ms(600);
+			PORTB.8 = 1; 
+			delay_ms(600);
+			PORTB.8 = 0; 
+			delay_ms(600);
+			PORTB.8 = 1; 
+			delay_ms(3000);
+		}else if (MODE==3){
+			//моргают оба светодиода попеременно
+			PORTB.7 = 1; 
+			PORTB.8 = 1; 
+			delay_ms(1000);
+
+			PORTB.7 = 0; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 1;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 1;
+			delay_ms(500);
+			PORTB.7 = 1; 
+			PORTB.8 = 0;
+			delay_ms(500);
+			PORTB.7 = 0; 
+			PORTB.8 = 1;
+			delay_ms(500);
 		}
 
 		// party time !!!
