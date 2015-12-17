@@ -48,7 +48,8 @@ void main(void)
 	while (1){
 
 		// checking button state, changing mode if needed
-		if (PIND.0 == 1){
+		// 1 is off, 0 is on
+		if (PIND.0 == 0){
 			if (MODE>=3){//should be variable
 				MODE = 0;
 			}else{
