@@ -46,6 +46,9 @@ void main(void)
 
 
 	while (1){
+		//debugging
+		PORTB.6 = 1;
+		PORTB.7 = 1;
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
@@ -55,9 +58,6 @@ void main(void)
 			}else{
 				MODE = MODE + 1;
 			}
-		}else if (PIND.0 == 0){
-			PORTB.6 = 1;
-			PORTB.7 = 1;
 		}
 
 		// party time !!!
