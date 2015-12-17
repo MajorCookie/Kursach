@@ -59,12 +59,12 @@ void main(void)
 		// party time !!!
 
 		// resetting state
-			PORTB.0 = 0; 
-			PORTB.1 = 0; 
-			PORTB.2 = 0; 
-			PORTB.3 = 0; 
-			PORTB.4 = 0; 
-			PORTB.5 = 0; 
+		PORTB.0 = 0; 
+		PORTB.1 = 0; 
+		PORTB.2 = 0; 
+		PORTB.3 = 0; 
+		PORTB.4 = 0; 
+		PORTB.5 = 0; 
 
 		switch(MODE){
 			case 0:
@@ -123,7 +123,7 @@ void main(void)
 			case 2:
 
 				// turning on 6th indicator
-				PORTB.6 = 1; 
+				PORTB.6 = 1;
 				delay_ms(100);
 
 				PORTB.6 = 0;
