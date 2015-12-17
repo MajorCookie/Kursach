@@ -49,14 +49,17 @@ void main(void)
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
-		if (PIND.0 == 0){
+		if (PIND.0 == 1){
 			if (MODE>=3){//should be variable
 				MODE = 0;
 			}else{
 				MODE = MODE + 1;
 			}
+		}else if (PIND.0 == 0){
+			PORTB.6 = 1;
+			PORTB.7 = 1;
 		}
-		
+
 		// party time !!!
 
 		// resetting state
@@ -112,22 +115,14 @@ void main(void)
 				PORTB.5 = 1; 
 				delay_ms(100);
 
-				PORTB.5 = 0;
-				PORTB.6 = 1; 
-				delay_ms(100);
-				
 				// turning off last indicator
-				PORTB.6 = 0;
+				PORTB.5 = 0;
 				delay_ms(100);
 				
 				break;
 			case 2:
 
-				// turning on 6th indicator
-				PORTB.6 = 1;
-				delay_ms(100);
-
-				PORTB.6 = 0;
+				// turning on last indicator
 				PORTB.5 = 1; 
 				delay_ms(100);
 
@@ -151,7 +146,7 @@ void main(void)
 				PORTB.0 = 1; 
 				delay_ms(100);
 				
-				// turning off last indicator
+				// turning off first indicator
 				PORTB.0 = 0;
 				delay_ms(100);
 				
@@ -163,23 +158,25 @@ void main(void)
 				delay_ms(100);
 				PORTB.2 = 1; 
 				delay_ms(100);
+
 				PORTB.0 = 0;
 				PORTB.3 = 1; 
 				delay_ms(100)
 				PORTB.1 = 0;
 				PORTB.4 = 1; 
 				delay_ms(100);
+
 				PORTB.2 = 0;
 				PORTB.5 = 1; 
 				delay_ms(100);
+
 				PORTB.3 = 0;
-				PORTB.6 = 1; 
 				delay_ms(100);
+
 				PORTB.4 = 0;
 				delay_ms(100);
+
 				PORTB.5 = 0;
-				delay_ms(100);
-				PORTB.6 = 0;
 				delay_ms(100);
 
 				break;
