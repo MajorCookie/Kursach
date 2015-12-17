@@ -45,7 +45,7 @@ void main(void)
 	DDRB=0b00111111;
 
 
-	while (1) PIND.0 == 1{
+	while (1){
 
 		// checking button state, changing mode if needed
 		if (PIND.0 == 1){
