@@ -161,7 +161,7 @@ void main(void)
 
 				PORTB.0 = 0;
 				PORTB.3 = 1; 
-				delay_ms(100)
+				delay_ms(100);
 				PORTB.1 = 0;
 				PORTB.4 = 1; 
 				delay_ms(100);
