@@ -33,6 +33,8 @@ void main(void)
 		3: snake move
 	*/
 	int MODE = 0;
+	int i;
+	int DEBUG_STATE = 0;
 
 	PORTD=0b00000001;
 	DDRD=0b00000000;
@@ -54,100 +56,53 @@ void main(void)
 			}else{
 				MODE = MODE + 1;
 			}
-		}else{
-			// мигают 2 светодиода 3 раза, горят 2 светодиода 3 секунды в конце
-			PORTB.7 = 0; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 1;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 1;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 1;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 1;
-			delay_ms(3000);
 		}
 		
 		if (MODE==0){
-			// горят 3 светодиода в начале 3 секунды
+			for( i = 1; i < 30; i++; ){
+				if (DEBUG_STATE==0){
+					DEBUG_STATE=1;
+					PORTB.7 = 1;
+					delay_ms(100);
+				}else if (DEBUG_STATE==1){
+					DEBUG_STATE=0;
+					PORTB.7 = 0;
+					delay_ms(100);
+				}
+			}
 			PORTB.7 = 1; 
-			PORTB.8 = 1;
 			delay_ms(3000);
 		}else if (MODE==1){
-			PORTB.8 = 0;
-			// моргает первый светодиод
 			PORTB.7 = 1; 
-			delay_ms(600);
-			PORTB.7 = 0; 
-			delay_ms(600);
-			PORTB.7 = 1; 
-			delay_ms(600);
-			PORTB.7 = 0; 
-			delay_ms(600);
-			PORTB.7 = 1; 
-			delay_ms(600);
-			PORTB.7 = 0; 
-			delay_ms(600);
-			PORTB.7 = 1; 
-			delay_ms(3000);
+			delay_ms(6000);
 		}else if (MODE=2){
-			PORTB.7 = 0;
-			// моргает второй  светодиод
-			PORTB.8 = 1; 
-			delay_ms(600);
-			PORTB.8 = 0; 
-			delay_ms(600);
-			PORTB.8 = 1; 
-			delay_ms(600);
-			PORTB.8 = 0; 
-			delay_ms(600);
-			PORTB.8 = 1; 
-			delay_ms(600);
-			PORTB.8 = 0; 
-			delay_ms(600);
-			PORTB.8 = 1; 
+			for( i = 1; i < 15; i++; ){
+				if (DEBUG_STATE==0){
+					DEBUG_STATE=1;
+					PORTB.7 = 1;
+					delay_ms(500);
+				}else if (DEBUG_STATE==1){
+					DEBUG_STATE=0;
+					PORTB.7 = 0;
+					delay_ms(500);
+				}
+			}
+			PORTB.7 = 1; 
 			delay_ms(3000);
 		}else if (MODE==3){
-			//моргают оба светодиода попеременно
-			PORTB.7 = 1; 
-			PORTB.8 = 1; 
-			delay_ms(1000);
-
+			for( i = 1; i < 15; i++; ){
+				if (DEBUG_STATE==0){
+					DEBUG_STATE=1;
+					PORTB.7 = 1;
+					delay_ms(1000);
+				}else if (DEBUG_STATE==1){
+					DEBUG_STATE=0;
+					PORTB.7 = 0;
+					delay_ms(1000);
+				}
+			}
 			PORTB.7 = 0; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 1;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 1;
-			delay_ms(500);
-			PORTB.7 = 1; 
-			PORTB.8 = 0;
-			delay_ms(500);
-			PORTB.7 = 0; 
-			PORTB.8 = 1;
-			delay_ms(500);
+			delay_ms(3000);
 		}
 
 		// party time !!!
