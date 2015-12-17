@@ -47,8 +47,8 @@ void main(void)
 
 	while (1){
 		//debugging
-		PORTB.6 = 1;
-		PORTB.7 = 1;
+		PORTB.6 = 0;
+		PORTB.7 = 0;
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on

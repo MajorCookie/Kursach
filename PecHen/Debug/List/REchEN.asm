@@ -1233,33 +1233,29 @@ _main:
 ; 0000 002F 
 ; 0000 0030 	while (1){
 _0x3:
-; 0000 0031 
-; 0000 0032 		// checking button state, changing mode if needed
-; 0000 0033 		// 1 is off, 0 is on
-; 0000 0034 		if (PIND.0 == 1){
+; 0000 0031 		//debugging
+; 0000 0032 		PORTB.6 = 0;
+	CBI  0x18,6
+; 0000 0033 		PORTB.7 = 0;
+	CBI  0x18,7
+; 0000 0034 
+; 0000 0035 		// checking button state, changing mode if needed
+; 0000 0036 		// 1 is off, 0 is on
+; 0000 0037 		if (PIND.0 == 1){
 	SBIS 0x10,0
-	RJMP _0x6
-; 0000 0035 			if (MODE>=3){//should be variable
-	__CPWRN 16,17,3
-	BRLT _0x7
-; 0000 0036 				MODE = 0;
-	__GETWRN 16,17,0
-; 0000 0037 			}else{
-	RJMP _0x8
-_0x7:
-; 0000 0038 				MODE = MODE + 1;
-	__ADDWRN 16,17,1
-; 0000 0039 			}
-_0x8:
-; 0000 003A 		}else if (PIND.0 == 0){
-	RJMP _0x9
-_0x6:
-	SBIC 0x10,0
 	RJMP _0xA
-; 0000 003B 			PORTB.6 = 1;
-	SBI  0x18,6
-; 0000 003C 			PORTB.7 = 1;
-	SBI  0x18,7
+; 0000 0038 			if (MODE>=3){//should be variable
+	__CPWRN 16,17,3
+	BRLT _0xB
+; 0000 0039 				MODE = 0;
+	__GETWRN 16,17,0
+; 0000 003A 			}else{
+	RJMP _0xC
+_0xB:
+; 0000 003B 				MODE = MODE + 1;
+	__ADDWRN 16,17,1
+; 0000 003C 			}
+_0xC:
 ; 0000 003D 		}
 ; 0000 003E 
 ; 0000 003F 		// party time !!!
@@ -1267,7 +1263,6 @@ _0x6:
 ; 0000 0041 		// resetting state
 ; 0000 0042 		PORTB.0 = 0;
 _0xA:
-_0x9:
 	RCALL SUBOPT_0x0
 ; 0000 0043 		PORTB.1 = 0;
 ; 0000 0044 		PORTB.2 = 0;
@@ -1279,7 +1274,7 @@ _0x9:
 	MOVW R30,R16
 ; 0000 004A 			case 0:
 	SBIW R30,0
-	BRNE _0x1E
+	BRNE _0x1C
 ; 0000 004B 				PORTB.0 = 1;
 	SBI  0x18,0
 ; 0000 004C 				PORTB.1 = 1;
@@ -1304,13 +1299,13 @@ _0x9:
 ; 0000 0058 				delay_ms(500);
 	RCALL SUBOPT_0x1
 ; 0000 0059 				break;
-	RJMP _0x1D
+	RJMP _0x1B
 ; 0000 005A 			case 1:
-_0x1E:
+_0x1C:
 	CPI  R30,LOW(0x1)
 	LDI  R26,HIGH(0x1)
 	CPC  R31,R26
-	BRNE _0x37
+	BRNE _0x35
 ; 0000 005B 				// turning on 1st indicator
 ; 0000 005C 				PORTB.0 = 1;
 	RCALL SUBOPT_0x2
@@ -1350,13 +1345,13 @@ _0x1E:
 	RCALL SUBOPT_0x8
 ; 0000 0079 
 ; 0000 007A 				break;
-	RJMP _0x1D
+	RJMP _0x1B
 ; 0000 007B 			case 2:
-_0x37:
+_0x35:
 	CPI  R30,LOW(0x2)
 	LDI  R26,HIGH(0x2)
 	CPC  R31,R26
-	BRNE _0x50
+	BRNE _0x4E
 ; 0000 007C 
 ; 0000 007D 				// turning on last indicator
 ; 0000 007E 				PORTB.5 = 1;
@@ -1394,13 +1389,13 @@ _0x37:
 	RCALL SUBOPT_0x8
 ; 0000 0098 
 ; 0000 0099 				break;
-	RJMP _0x1D
+	RJMP _0x1B
 ; 0000 009A 			case 3:
-_0x50:
+_0x4E:
 	CPI  R30,LOW(0x3)
 	LDI  R26,HIGH(0x3)
 	CPC  R31,R26
-	BRNE _0x82
+	BRNE _0x80
 ; 0000 009B 				PORTB.0 = 1;
 	SBI  0x18,0
 ; 0000 009C 				delay_ms(100);
@@ -1450,9 +1445,9 @@ _0x50:
 	RCALL SUBOPT_0x8
 ; 0000 00B5 
 ; 0000 00B6 				break;
-	RJMP _0x1D
+	RJMP _0x1B
 ; 0000 00B7 			default:
-_0x82:
+_0x80:
 ; 0000 00B8 				PORTB.0 = 1;
 	SBI  0x18,0
 ; 0000 00B9 				delay_ms(500);
@@ -1460,12 +1455,12 @@ _0x82:
 ; 0000 00BA 				PORTB.0 = 0;
 	CBI  0x18,0
 ; 0000 00BB 		}
-_0x1D:
+_0x1B:
 ; 0000 00BC 	}
 	RJMP _0x3
 ; 0000 00BD }
-_0x87:
-	RJMP _0x87
+_0x85:
+	RJMP _0x85
 ; .FEND
 
 	.CSEG
