@@ -49,6 +49,9 @@ void main(void)
 		//debugging
 		PORTB.6 = 0;
 		PORTB.7 = 0;
+		delay_ms(100);
+		PORTB.6 = 1;
+		PORTB.7 = 1;
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
