@@ -91,7 +91,7 @@
 ; 0000 0030 
 ; 0000 0031 		// checking button state, changing mode if needed
 ; 0000 0032 		// 1 is off, 0 is on
-; 0000 0033 		if (PINC.0 == 1){
+; 0000 0033 		if (PINC.0 == 0){
 ;PCODE: $0000001D VOL: 0
 ;PCODE: $0000001E VOL: 0
 ;PCODE: $0000001F VOL: 0

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun Dec 20 22:36:44 2015
+AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun Dec 20 22:38:04 2015
 
                  
                  
@@ -1242,8 +1242,8 @@ AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun De
                  ; 0000 0030 
                  ; 0000 0031 		// checking button state, changing mode if needed
                  ; 0000 0032 		// 1 is off, 0 is on
-                 ; 0000 0033 		if (PINC.0 == 1){
-000038 9b98      	SBIS 0x13,0
+                 ; 0000 0033 		if (PINC.0 == 0){
+000038 9998      	SBIC 0x13,0
 000039 c008      	RJMP _0x6
                  ; 0000 0034 			MODE++; //increasing mode variable
                 +
@@ -1610,8 +1610,8 @@ inc   :   0 ld    :   0 ldd   :   0 ldi   :  39 lds   :   0 lpm   :   0
 lsl   :   0 lsr   :   0 mov   :   0 movw  :   1 mul   :   0 muls  :   0 
 mulsu :   0 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  12 
 pop   :   0 push  :   0 rcall :  34 ret   :   8 reti  :   0 rjmp  :  29 
-rol   :   0 ror   :   0 sbc   :   0 sbci  :   1 sbi   :  19 sbic  :   0 
-sbis  :   1 sbiw  :   4 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
+rol   :   0 ror   :   0 sbc   :   0 sbci  :   1 sbi   :  19 sbic  :   1 
+sbis  :   0 sbiw  :   4 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
 seh   :   0 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 
 sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :   2 std   :   0 
 sts   :   0 sub   :   0 subi  :   1 swap  :   0 tst   :   0 wdr   :   1 

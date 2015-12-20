@@ -48,7 +48,7 @@ void main(void)
 
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
-		if (PINC.0 == 1){
+		if (PINC.0 == 0){
 			MODE++; //increasing mode variable
 			if (MODE>=4){
 				MODE = 0; //resetting mode if we're out of em

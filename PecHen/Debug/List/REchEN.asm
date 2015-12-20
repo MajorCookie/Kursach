@@ -1235,8 +1235,8 @@ _0x3:
 ; 0000 0030 
 ; 0000 0031 		// checking button state, changing mode if needed
 ; 0000 0032 		// 1 is off, 0 is on
-; 0000 0033 		if (PINC.0 == 1){
-	SBIS 0x13,0
+; 0000 0033 		if (PINC.0 == 0){
+	SBIC 0x13,0
 	RJMP _0x6
 ; 0000 0034 			MODE++; //increasing mode variable
 	__ADDWRN 16,17,1
