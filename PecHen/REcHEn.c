@@ -33,8 +33,6 @@ void main(void)
 		3: snake move
 	*/
 	int MODE = 0;
-	int i;
-	int DEBUG_STATE = 0;
 
 	PORTD=0b00000001;
 	DDRD=0b00000000;
@@ -56,52 +54,11 @@ void main(void)
 				MODE = 0;
 			}
 		}
-
-		if (MODE==0){
-			for( i = 1; i < 30; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(100);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(100);
-				}
-			}
-			PORTB.7 = 1; 
-			delay_ms(3000);
-		}else if (MODE==1){
-			PORTB.7 = 1; 
-			delay_ms(6000);
-		}else if (MODE==2){
-			for( i = 1; i < 15; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(500);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(500);
-				}
-			}
-			PORTB.7 = 1; 
-			delay_ms(3000);
-		}else if (MODE==3){
-			for( i = 1; i < 15; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(1000);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(1000);
-				}
-			}
-			PORTB.7 = 0; 
-			delay_ms(3000);
+		
+		if (PIND.0 == 1){
+			PORTB.6 = 1; 
+		}else if (PIND.0 == 0){
+			PORTB.6 = 0; 
 		}
 
 		// party time !!!
