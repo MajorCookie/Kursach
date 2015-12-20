@@ -56,7 +56,7 @@ void main(void)
 				MODE = 0;
 			}
 		}
-		
+
 		if (MODE==0){
 			for( i = 1; i < 30; i++ ){
 				if (DEBUG_STATE==0){
