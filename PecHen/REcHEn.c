@@ -46,6 +46,7 @@ void main(void)
 
 	while (1){
 
+		PORTB.6 = 0;
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
 		if (PINC.0 == 0){
@@ -53,6 +54,13 @@ void main(void)
 			if (MODE>=4){
 				MODE = 0; //resetting mode if we're out of em
 			}
+			PORTB.0 = 1; 
+			PORTB.1 = 1; 
+			PORTB.2 = 1; 
+			PORTB.3 = 1; 
+			PORTB.4 = 1; 
+			PORTB.5 = 1;
+			delay_ms(1500);
 		}
 
 		// party time !!!
@@ -67,118 +75,127 @@ void main(void)
 
 		switch(MODE){
 			case 0:
-				PORTB.0 = 1;
-				PORTB.1 = 1;
-				PORTB.2 = 1;
-				PORTB.3 = 1;
-				PORTB.4 = 1;
-				PORTB.5 = 1;
-				delay_ms(500);
-				PORTB.0 = 0;
-				PORTB.1 = 0;
-				PORTB.2 = 0;
-				PORTB.3 = 0;
-				PORTB.4 = 0;
-				PORTB.5 = 0;
-				delay_ms(500);
-				break;
+				{
+					PORTB.0 = 1;
+					PORTB.1 = 1;
+					PORTB.2 = 1;
+					PORTB.3 = 1;
+					PORTB.4 = 1;
+					PORTB.5 = 1;
+					delay_ms(500);
+					PORTB.0 = 0;
+					PORTB.1 = 0;
+					PORTB.2 = 0;
+					PORTB.3 = 0;
+					PORTB.4 = 0;
+					PORTB.5 = 0;
+					delay_ms(500);
+					break;
+				}
 			case 1:
-				// turning on 1st indicator
-				PORTB.0 = 1; 
-				delay_ms(100);
-				
-				// turning off 1st indicator, turning on 2nd indicator
-				PORTB.0 = 0;
-				PORTB.1 = 1; 
-				delay_ms(100);
-				
-				// turning off 2nd indicator, turning on 3rd indicator
-				PORTB.1 = 0;
-				PORTB.2 = 1; 
-				delay_ms(100);
+				{
+					// turning on 1st indicator
+					PORTB.0 = 1; 
+					delay_ms(100);
+					
+					// turning off 1st indicator, turning on 2nd indicator
+					PORTB.0 = 0;
+					PORTB.1 = 1; 
+					delay_ms(100);
+					
+					// turning off 2nd indicator, turning on 3rd indicator
+					PORTB.1 = 0;
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				// same ...
-				PORTB.2 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
+					// same ...
+					PORTB.2 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.3 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.4 = 0;
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				// turning off last indicator
-				PORTB.5 = 0;
-				delay_ms(100);
-				
-				break;
+					// turning off last indicator
+					PORTB.5 = 0;
+					delay_ms(100);
+					
+					break;
+				}
 			case 2:
+				{
+					// turning on last indicator
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				// turning on last indicator
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.5 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.5 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.4 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
+					PORTB.3 = 0;
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				PORTB.2 = 1; 
-				delay_ms(100);
+					PORTB.2 = 0;
+					PORTB.1 = 1; 
+					delay_ms(100);
 
-				PORTB.2 = 0;
-				PORTB.1 = 1; 
-				delay_ms(100);
-
-				PORTB.1 = 0;
-				PORTB.0 = 1; 
-				delay_ms(100);
-				
-				// turning off first indicator
-				PORTB.0 = 0;
-				delay_ms(100);
-				
-				break;
+					PORTB.1 = 0;
+					PORTB.0 = 1; 
+					delay_ms(100);
+					
+					// turning off first indicator
+					PORTB.0 = 0;
+					delay_ms(100);
+					
+					break;
+				}
 			case 3:
-				PORTB.0 = 1; 
-				delay_ms(100);
-				PORTB.1 = 1; 
-				delay_ms(100);
-				PORTB.2 = 1; 
-				delay_ms(100);
+				{
+					PORTB.0 = 1; 
+					delay_ms(100);
+					PORTB.1 = 1; 
+					delay_ms(100);
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				PORTB.0 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
-				PORTB.1 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.0 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
+					PORTB.1 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.2 = 0;
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.2 = 0;
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				delay_ms(100);
+					PORTB.3 = 0;
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				delay_ms(100);
+					PORTB.4 = 0;
+					delay_ms(100);
 
-				PORTB.5 = 0;
-				delay_ms(100);
+					PORTB.5 = 0;
+					delay_ms(100);
 
-				break;
+					break;
+				}
 			default:
-				PORTB.0 = 1; 
-				delay_ms(500);
-				PORTB.0 = 0;
+				{
+					PORTB.0 = 1; 
+					delay_ms(500);
+					PORTB.0 = 0;
+				}
 		}
 	
 	
