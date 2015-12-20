@@ -49,7 +49,7 @@ void main(void)
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
 		
-		if (PIND.0 == 1){
+		if (PINC.0 == 1){
 			PORTB.6 = 0;
 			//PORTB.7 = 0; 
 		}else{
@@ -71,7 +71,8 @@ void main(void)
 
 		//debugging
 		PORTB.0 = 1;
-		delay_ms(500);
+		PORTB.0 = 0;
+		delay_ms(100);
 		PORTB.0 = 0;
 	}
 }

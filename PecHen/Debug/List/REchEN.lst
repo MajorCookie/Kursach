@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun Dec 20 22:27:09 2015
+AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun Dec 20 22:32:42 2015
 
                  
                  
@@ -1243,194 +1243,70 @@ AVRASM ver. 2.1.30  D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm Sun De
                  ; 0000 0031 		// checking button state, changing mode if needed
                  ; 0000 0032 		// 1 is off, 0 is on
                  ; 0000 0033 
-                 ; 0000 0034 		if (PIND.0 == 1){
-000038 9b80      	SBIS 0x10,0
-000039 c003      	RJMP _0x6
-                 ; 0000 0035 			PORTB.6 = 1;
-00003a 9ac6      	SBI  0x18,6
-                 ; 0000 0036 			PORTB.7 = 1;
-00003b 9ac7      	SBI  0x18,7
-                 ; 0000 0037 		}else if (PIND.0 == 0){
-00003c c004      	RJMP _0xB
+                 ; 0000 0034 		if (PINC.0 == 1){
+000038 9b98      	SBIS 0x13,0
+000039 c002      	RJMP _0x6
+                 ; 0000 0035 			PORTB.6 = 0;
+00003a 98c6      	CBI  0x18,6
+                 ; 0000 0036 			//PORTB.7 = 0;
+                 ; 0000 0037 		}else{
+00003b c001      	RJMP _0x9
                  _0x6:
-00003d 9980      	SBIC 0x10,0
-00003e c002      	RJMP _0xC
-                 ; 0000 0038 			PORTB.6 = 0;
-00003f 98c6      	CBI  0x18,6
-                 ; 0000 0039 			PORTB.7 = 0;
-000040 98c7      	CBI  0x18,7
+                 ; 0000 0038 			PORTB.6 = 1;
+00003c 9ac6      	SBI  0x18,6
+                 ; 0000 0039 			//PORTB.7 = 1;
                  ; 0000 003A 		}
+                 _0x9:
                  ; 0000 003B 
                  ; 0000 003C 		// party time !!!
                  ; 0000 003D 
                  ; 0000 003E 		// resetting state
-                 ; 0000 003F 		PORTB.0 = 0;
-                 _0xC:
-                 _0xB:
-000041 98c0      	CBI  0x18,0
-                 ; 0000 0040 		PORTB.1 = 0;
-000042 98c1      	CBI  0x18,1
-                 ; 0000 0041 		PORTB.2 = 0;
-000043 98c2      	CBI  0x18,2
-                 ; 0000 0042 		PORTB.3 = 0;
-000044 98c3      	CBI  0x18,3
-                 ; 0000 0043 		PORTB.4 = 0;
-000045 98c4      	CBI  0x18,4
-                 ; 0000 0044 		PORTB.5 = 0;
-000046 98c5      	CBI  0x18,5
-                 ; 0000 0045 
-                 ; 0000 0046 		//debugging
-                 ; 0000 0047 		delay_ms(500);
-000047 efa4      	LDI  R26,LOW(500)
-000048 e0b1      	LDI  R27,HIGH(500)
-000049 d003      	RCALL _delay_ms
-                 ; 0000 0048 		PORTB.0 = 1;
-00004a 9ac0      	SBI  0x18,0
-                 ; 0000 0049 
-                 ; 0000 004A 
-                 ; 0000 004B 		/*
-                 ; 0000 004C 		switch(MODE){
-                 ; 0000 004D 			case 0:
-                 ; 0000 004E 				PORTB.0 = 1;
-                 ; 0000 004F 				PORTB.1 = 1;
-                 ; 0000 0050 				PORTB.2 = 1;
-                 ; 0000 0051 				PORTB.3 = 1;
-                 ; 0000 0052 				PORTB.4 = 1;
-                 ; 0000 0053 				PORTB.5 = 1;
-                 ; 0000 0054 				delay_ms(500);
-                 ; 0000 0055 				PORTB.0 = 0;
-                 ; 0000 0056 				PORTB.1 = 0;
-                 ; 0000 0057 				PORTB.2 = 0;
-                 ; 0000 0058 				PORTB.3 = 0;
-                 ; 0000 0059 				PORTB.4 = 0;
-                 ; 0000 005A 				PORTB.5 = 0;
-                 ; 0000 005B 				delay_ms(500);
-                 ; 0000 005C 				break;
-                 ; 0000 005D 			case 1:
-                 ; 0000 005E 				// turning on 1st indicator
-                 ; 0000 005F 				PORTB.0 = 1;
-                 ; 0000 0060 				delay_ms(100);
-                 ; 0000 0061 
-                 ; 0000 0062 				// turning off 1st indicator, turning on 2nd indicator
-                 ; 0000 0063 				PORTB.0 = 0;
-                 ; 0000 0064 				PORTB.1 = 1;
-                 ; 0000 0065 				delay_ms(100);
-                 ; 0000 0066 
-                 ; 0000 0067 				// turning off 2nd indicator, turning on 3rd indicator
-                 ; 0000 0068 				PORTB.1 = 0;
-                 ; 0000 0069 				PORTB.2 = 1;
-                 ; 0000 006A 				delay_ms(100);
-                 ; 0000 006B 
-                 ; 0000 006C 				// same ...
-                 ; 0000 006D 				PORTB.2 = 0;
-                 ; 0000 006E 				PORTB.3 = 1;
-                 ; 0000 006F 				delay_ms(100);
-                 ; 0000 0070 
-                 ; 0000 0071 				PORTB.3 = 0;
-                 ; 0000 0072 				PORTB.4 = 1;
-                 ; 0000 0073 				delay_ms(100);
-                 ; 0000 0074 
-                 ; 0000 0075 				PORTB.4 = 0;
-                 ; 0000 0076 				PORTB.5 = 1;
-                 ; 0000 0077 				delay_ms(100);
-                 ; 0000 0078 
-                 ; 0000 0079 				// turning off last indicator
-                 ; 0000 007A 				PORTB.5 = 0;
-                 ; 0000 007B 				delay_ms(100);
-                 ; 0000 007C 
-                 ; 0000 007D 				break;
-                 ; 0000 007E 			case 2:
-                 ; 0000 007F 
-                 ; 0000 0080 				// turning on last indicator
-                 ; 0000 0081 				PORTB.5 = 1;
-                 ; 0000 0082 				delay_ms(100);
-                 ; 0000 0083 
-                 ; 0000 0084 				PORTB.5 = 0;
-                 ; 0000 0085 				PORTB.4 = 1;
-                 ; 0000 0086 				delay_ms(100);
-                 ; 0000 0087 
-                 ; 0000 0088 				PORTB.4 = 0;
-                 ; 0000 0089 				PORTB.3 = 1;
-                 ; 0000 008A 				delay_ms(100);
-                 ; 0000 008B 
-                 ; 0000 008C 				PORTB.3 = 0;
-                 ; 0000 008D 				PORTB.2 = 1;
-                 ; 0000 008E 				delay_ms(100);
-                 ; 0000 008F 
-                 ; 0000 0090 				PORTB.2 = 0;
-                 ; 0000 0091 				PORTB.1 = 1;
-                 ; 0000 0092 				delay_ms(100);
-                 ; 0000 0093 
-                 ; 0000 0094 				PORTB.1 = 0;
-                 ; 0000 0095 				PORTB.0 = 1;
-                 ; 0000 0096 				delay_ms(100);
-                 ; 0000 0097 
-                 ; 0000 0098 				// turning off first indicator
-                 ; 0000 0099 				PORTB.0 = 0;
-                 ; 0000 009A 				delay_ms(100);
-                 ; 0000 009B 
-                 ; 0000 009C 				break;
-                 ; 0000 009D 			case 3:
-                 ; 0000 009E 				PORTB.0 = 1;
-                 ; 0000 009F 				delay_ms(100);
-                 ; 0000 00A0 				PORTB.1 = 1;
-                 ; 0000 00A1 				delay_ms(100);
-                 ; 0000 00A2 				PORTB.2 = 1;
-                 ; 0000 00A3 				delay_ms(100);
-                 ; 0000 00A4 
-                 ; 0000 00A5 				PORTB.0 = 0;
-                 ; 0000 00A6 				PORTB.3 = 1;
-                 ; 0000 00A7 				delay_ms(100);
-                 ; 0000 00A8 				PORTB.1 = 0;
-                 ; 0000 00A9 				PORTB.4 = 1;
-                 ; 0000 00AA 				delay_ms(100);
-                 ; 0000 00AB 
-                 ; 0000 00AC 				PORTB.2 = 0;
-                 ; 0000 00AD 				PORTB.5 = 1;
-                 ; 0000 00AE 				delay_ms(100);
-                 ; 0000 00AF 
-                 ; 0000 00B0 				PORTB.3 = 0;
-                 ; 0000 00B1 				delay_ms(100);
-                 ; 0000 00B2 
-                 ; 0000 00B3 				PORTB.4 = 0;
-                 ; 0000 00B4 				delay_ms(100);
-                 ; 0000 00B5 
-                 ; 0000 00B6 				PORTB.5 = 0;
-                 ; 0000 00B7 				delay_ms(100);
-                 ; 0000 00B8 
-                 ; 0000 00B9 				break;
-                 ; 0000 00BA 			default:
-                 ; 0000 00BB 				PORTB.0 = 1;
-                 ; 0000 00BC 				delay_ms(500);
-                 ; 0000 00BD 				PORTB.0 = 0;
-                 ; 0000 00BE 		}
-                 ; 0000 00BF 		*/
-                 ; 0000 00C0 	}
-00004b cfec      	RJMP _0x3
-                 ; 0000 00C1 }
-                 _0x1F:
-00004c cfff      	RJMP _0x1F
+                 ; 0000 003F 		/*
+                 ; 0000 0040 		PORTB.0 = 0;
+                 ; 0000 0041 		PORTB.1 = 0;
+                 ; 0000 0042 		PORTB.2 = 0;
+                 ; 0000 0043 		PORTB.3 = 0;
+                 ; 0000 0044 		PORTB.4 = 0;
+                 ; 0000 0045 		PORTB.5 = 0;
+                 ; 0000 0046 		*/
+                 ; 0000 0047 
+                 ; 0000 0048 		//debugging
+                 ; 0000 0049 		PORTB.0 = 1;
+00003d 9ac0      	SBI  0x18,0
+                 ; 0000 004A 		PORTB.0 = 0;
+00003e 98c0      	CBI  0x18,0
+                 ; 0000 004B 		delay_ms(100);
+00003f e6a4      	LDI  R26,LOW(100)
+000040 e0b0      	LDI  R27,0
+000041 d003      	RCALL _delay_ms
+                 ; 0000 004C 		PORTB.0 = 0;
+000042 98c0      	CBI  0x18,0
+                 ; 0000 004D 	}
+000043 cff4      	RJMP _0x3
+                 ; 0000 004E }
+                 _0x12:
+000044 cfff      	RJMP _0x12
                  ; .FEND
                  
                  	.CSEG
                  
                  	.CSEG
                  _delay_ms:
-00004d 9610      	adiw r26,0
-00004e f039      	breq __delay_ms1
+000045 9610      	adiw r26,0
+000046 f039      	breq __delay_ms1
                  __delay_ms0:
                 +
-00004f ee88     +LDI R24 , LOW ( 0x3E8 )
-000050 e093     +LDI R25 , HIGH ( 0x3E8 )
+000047 ee88     +LDI R24 , LOW ( 0x3E8 )
+000048 e093     +LDI R25 , HIGH ( 0x3E8 )
                 +__DELAY_USW_LOOP :
-000051 9701     +SBIW R24 , 1
-000052 f7f1     +BRNE __DELAY_USW_LOOP
+000049 9701     +SBIW R24 , 1
+00004a f7f1     +BRNE __DELAY_USW_LOOP
                  	__DELAY_USW 0x3E8
-000053 95a8      	wdr
-000054 9711      	sbiw r26,1
-000055 f7c9      	brne __delay_ms0
+00004b 95a8      	wdr
+00004c 9711      	sbiw r26,1
+00004d f7c9      	brne __delay_ms0
                  __delay_ms1:
-000056 9508      	ret
+00004e 9508      	ret
                  
                  ;END OF CODE MARKER
                  __END_OF_CODE:
@@ -1464,7 +1340,7 @@ adiw  :   1 and   :   0 andi  :   0 asr   :   0 bclr  :   0 bld   :   0
 brbc  :   0 brbs  :   0 brcc  :   0 brcs  :   0 break :   0 breq  :   1 
 brge  :   0 brhc  :   0 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 
 brlt  :   0 brmi  :   0 brne  :   4 brpl  :   0 brsh  :   0 brtc  :   0 
-brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 cbi   :   8 
+brts  :   0 brvc  :   0 brvs  :   0 bset  :   0 bst   :   0 cbi   :   3 
 cbr   :   0 clc   :   0 clh   :   0 cli   :   1 cln   :   0 clr   :   2 
 cls   :   0 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 
 cpc   :   0 cpi   :   0 cpse  :   0 dec   :   1 des   :   0 eor   :   0 
@@ -1472,19 +1348,19 @@ fmul  :   0 fmuls :   0 fmulsu:   0 icall :   0 ijmp  :   0 in    :   0
 inc   :   0 ld    :   0 ldd   :   0 ldi   :  19 lds   :   0 lpm   :   0 
 lsl   :   0 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 
 mulsu :   0 neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  12 
-pop   :   0 push  :   0 rcall :   1 ret   :   1 reti  :   0 rjmp  :  25 
-rol   :   0 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   3 sbic  :   1 
+pop   :   0 push  :   0 rcall :   1 ret   :   1 reti  :   0 rjmp  :  24 
+rol   :   0 ror   :   0 sbc   :   0 sbci  :   0 sbi   :   2 sbic  :   0 
 sbis  :   1 sbiw  :   3 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 
 seh   :   0 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 
 sev   :   0 sez   :   0 sleep :   0 spm   :   0 st    :   2 std   :   0 
 sts   :   0 sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   1 
 
-Instructions used: 18 out of 114 (15.8%)
+Instructions used: 17 out of 114 (14.9%)
 
 ATmega8 memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x0000ae    174      0    174    8192   2.1%
+[.cseg] 0x000000 0x00009e    158      0    158    8192   1.9%
 [.dseg] 0x000060 0x000160      0      0      0    1024   0.0%
 [.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 
