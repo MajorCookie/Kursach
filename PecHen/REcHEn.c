@@ -51,7 +51,7 @@ void main(void)
 		// 1 is off, 0 is on
 		if (PINC.0 == 0){
 			MODE++; //increasing mode variable
-			if (MODE>=4){
+			if (MODE>=6){
 				MODE = 0; //resetting mode if we're out of em
 			}
 			PORTB.0 = 1; 
@@ -122,8 +122,24 @@ void main(void)
 					delay_ms(100);
 
 					// turning off last indicator
-					PORTB.5 = 0;
 					delay_ms(100);
+                    PORTB.5 = 1;
+                    PORTB.4 = 0;
+                    delay_ms(100);
+                    PORTB.4 = 1;
+                    PORTB.3 = 0;
+                    delay_ms(100);
+                    PORTB.3 = 1;
+                    PORTB.2 = 0;
+                    delay_ms(100);
+                    PORTB.2 = 1;
+                    PORTB.1 = 0;
+                    delay_ms(100);
+                    PORTB.1 = 1;
+                    PORTB.0 = 0;
+                    delay_ms(100);
+                    PORTB.0 = 1;
+                    delay_ms(100);
 					
 					break;
 				}
@@ -189,7 +205,191 @@ void main(void)
 					delay_ms(100);
 
 					break;
-				}
+				}     
+            case 4:
+                {
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+				  break;
+                }       
+            case 5:
+                {
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+                  delay_ms(100);
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  delay_ms(100);
+				  PORTB.3 = 0;
+			  	  PORTB.4 = 1;
+                  delay_ms(100);
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+                  delay_ms(100);
+				  PORTB.5 = 0;
+				  delay_ms(100);
+                  PORTB.4 = 1;
+                  delay_ms(100);
+                  PORTB.4 = 0;
+                  PORTB.3 = 1;
+                  delay_ms(100);
+                  PORTB.3 = 0;
+                  PORTB.2 = 1;
+                  delay_ms(100);
+                  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  delay_ms(100);
+                  PORTB.1 = 0;
+                  PORTB.0 = 1;
+                  delay_ms(100); 
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+                  delay_ms(100);
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  delay_ms(100);
+				  PORTB.3 = 0;
+			  	  PORTB.4 = 1;
+                  delay_ms(100);
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+                  delay_ms(100);
+				  PORTB.5 = 0;
+				  delay_ms(100);
+                  PORTB.4 = 1;
+                  delay_ms(100);
+                  PORTB.4 = 0;
+                  PORTB.3 = 1;
+                  delay_ms(100);
+                  PORTB.3 = 0;
+                  PORTB.2 = 1;
+                  delay_ms(100);
+                  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  delay_ms(100);
+                  PORTB.1 = 0;
+                  PORTB.0 = 1;
+                  delay_ms(100);
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(300);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+                  PORTB.2 = 1;
+                  PORTB.3 = 1;
+                  delay_ms(300);
+				  PORTB.2 = 0;
+				  PORTB.3 = 0;
+                  PORTB.4 = 1;
+                  PORTB.5 = 1;
+				  delay_ms(300);
+				  PORTB.4 = 0;
+			  	  PORTB.5 = 0;
+                  PORTB.3 = 1;
+                  PORTB.2 = 1;
+                  delay_ms(300);
+				  PORTB.3 = 0;
+				  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  PORTB.0 = 1;
+                  delay_ms(300);
+                  PORTB.1 = 0;
+				  PORTB.0 = 0;
+				  delay_ms(300);        
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(300);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+                  PORTB.2 = 1;
+                  PORTB.3 = 1;
+                  delay_ms(300);
+				  PORTB.2 = 0;
+				  PORTB.3 = 0;
+                  PORTB.4 = 1;
+                  PORTB.5 = 1;
+				  delay_ms(300);
+				  PORTB.4 = 0;
+			  	  PORTB.5 = 0;
+                  PORTB.3 = 1;
+                  PORTB.2 = 1;
+                  delay_ms(300);
+				  PORTB.3 = 0;
+				  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  PORTB.0 = 1;
+                  delay_ms(300);
+                  PORTB.1 = 0;
+				  PORTB.0 = 0;
+				  delay_ms(300); 
+                  
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);          
+				  break;  
+                  
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+                  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+                  
+                }
 			default:
 				{
 					PORTB.0 = 1; 

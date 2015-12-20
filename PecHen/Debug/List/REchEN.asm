@@ -6,7 +6,7 @@
 ;Build configuration    : Debug
 ;Chip type              : ATmega8
 ;Program type           : Application
-;Clock frequency        : 4.000000 MHz
+;Clock frequency        : 4,000000 MHz
 ;Memory model           : Small
 ;Optimize for           : Size
 ;(s)printf features     : int, width
@@ -1242,8 +1242,8 @@ _0x3:
 	RJMP _0x8
 ; 0000 0035 			MODE++; //increasing mode variable
 	__ADDWRN 16,17,1
-; 0000 0036 			if (MODE>=4){
-	__CPWRN 16,17,4
+; 0000 0036 			if (MODE>=6){
+	__CPWRN 16,17,6
 	BRLT _0x9
 ; 0000 0037 				MODE = 0; //resetting mode if we're out of em
 	__GETWRN 16,17,0
@@ -1315,6 +1315,7 @@ _0x25:
 ; 0000 0064 
 ; 0000 0065 					// turning off 1st indicator, turning on 2nd indicator
 ; 0000 0066 					PORTB.0 = 0;
+	CBI  0x18,0
 ; 0000 0067 					PORTB.1 = 1;
 	RCALL SUBOPT_0x4
 ; 0000 0068 					delay_ms(100);
@@ -1342,135 +1343,404 @@ _0x25:
 ; 0000 007A 					delay_ms(100);
 ; 0000 007B 
 ; 0000 007C 					// turning off last indicator
-; 0000 007D 					PORTB.5 = 0;
-; 0000 007E 					delay_ms(100);
+; 0000 007D 					delay_ms(100);
 	RCALL SUBOPT_0x9
-; 0000 007F 
-; 0000 0080 					break;
+; 0000 007E                     PORTB.5 = 1;
+	SBI  0x18,5
+; 0000 007F                     PORTB.4 = 0;
+	CBI  0x18,4
+; 0000 0080                     delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 0081                     PORTB.4 = 1;
+	SBI  0x18,4
+; 0000 0082                     PORTB.3 = 0;
+	CBI  0x18,3
+; 0000 0083                     delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 0084                     PORTB.3 = 1;
+	SBI  0x18,3
+; 0000 0085                     PORTB.2 = 0;
+	CBI  0x18,2
+; 0000 0086                     delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 0087                     PORTB.2 = 1;
+	SBI  0x18,2
+; 0000 0088                     PORTB.1 = 0;
+	CBI  0x18,1
+; 0000 0089                     delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 008A                     PORTB.1 = 1;
+	SBI  0x18,1
+; 0000 008B                     PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 008C                     delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 008D                     PORTB.0 = 1;
+	RCALL SUBOPT_0x3
+; 0000 008E                     delay_ms(100);
+; 0000 008F 
+; 0000 0090 					break;
 	RJMP _0x24
-; 0000 0081 				}
-; 0000 0082 			case 2:
+; 0000 0091 				}
+; 0000 0092 			case 2:
 _0x3E:
 	CPI  R30,LOW(0x2)
 	LDI  R26,HIGH(0x2)
 	CPC  R31,R26
-	BRNE _0x57
-; 0000 0083 				{
-; 0000 0084 					// turning on last indicator
-; 0000 0085 					PORTB.5 = 1;
+	BRNE _0x6B
+; 0000 0093 				{
+; 0000 0094 					// turning on last indicator
+; 0000 0095 					PORTB.5 = 1;
 	RCALL SUBOPT_0x8
-; 0000 0086 					delay_ms(100);
-; 0000 0087 
-; 0000 0088 					PORTB.5 = 0;
-; 0000 0089 					PORTB.4 = 1;
-	RCALL SUBOPT_0x7
-; 0000 008A 					delay_ms(100);
-; 0000 008B 
-; 0000 008C 					PORTB.4 = 0;
-; 0000 008D 					PORTB.3 = 1;
-	RCALL SUBOPT_0x6
-; 0000 008E 					delay_ms(100);
-; 0000 008F 
-; 0000 0090 					PORTB.3 = 0;
-; 0000 0091 					PORTB.2 = 1;
-	RCALL SUBOPT_0x5
-; 0000 0092 					delay_ms(100);
-; 0000 0093 
-; 0000 0094 					PORTB.2 = 0;
-; 0000 0095 					PORTB.1 = 1;
-	RCALL SUBOPT_0x4
 ; 0000 0096 					delay_ms(100);
 ; 0000 0097 
-; 0000 0098 					PORTB.1 = 0;
-; 0000 0099 					PORTB.0 = 1;
-	RCALL SUBOPT_0x3
+; 0000 0098 					PORTB.5 = 0;
+	CBI  0x18,5
+; 0000 0099 					PORTB.4 = 1;
+	RCALL SUBOPT_0x7
 ; 0000 009A 					delay_ms(100);
 ; 0000 009B 
-; 0000 009C 					// turning off first indicator
-; 0000 009D 					PORTB.0 = 0;
+; 0000 009C 					PORTB.4 = 0;
+; 0000 009D 					PORTB.3 = 1;
+	RCALL SUBOPT_0x6
 ; 0000 009E 					delay_ms(100);
-	RCALL SUBOPT_0x9
 ; 0000 009F 
-; 0000 00A0 					break;
+; 0000 00A0 					PORTB.3 = 0;
+; 0000 00A1 					PORTB.2 = 1;
+	RCALL SUBOPT_0x5
+; 0000 00A2 					delay_ms(100);
+; 0000 00A3 
+; 0000 00A4 					PORTB.2 = 0;
+; 0000 00A5 					PORTB.1 = 1;
+	RCALL SUBOPT_0x4
+; 0000 00A6 					delay_ms(100);
+; 0000 00A7 
+; 0000 00A8 					PORTB.1 = 0;
+; 0000 00A9 					PORTB.0 = 1;
+	RCALL SUBOPT_0x3
+; 0000 00AA 					delay_ms(100);
+; 0000 00AB 
+; 0000 00AC 					// turning off first indicator
+; 0000 00AD 					PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 00AE 					delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 00AF 
+; 0000 00B0 					break;
 	RJMP _0x24
-; 0000 00A1 				}
-; 0000 00A2 			case 3:
-_0x57:
+; 0000 00B1 				}
+; 0000 00B2 			case 3:
+_0x6B:
 	CPI  R30,LOW(0x3)
 	LDI  R26,HIGH(0x3)
 	CPC  R31,R26
-	BRNE _0x89
-; 0000 00A3 				{
-; 0000 00A4 					PORTB.0 = 1;
-	SBI  0x18,0
-; 0000 00A5 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00A6 					PORTB.1 = 1;
+	BRNE _0x84
+; 0000 00B3 				{
+; 0000 00B4 					PORTB.0 = 1;
+	RCALL SUBOPT_0x3
+; 0000 00B5 					delay_ms(100);
+; 0000 00B6 					PORTB.1 = 1;
 	SBI  0x18,1
-; 0000 00A7 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00A8 					PORTB.2 = 1;
-	SBI  0x18,2
-; 0000 00A9 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00AA 
-; 0000 00AB 					PORTB.0 = 0;
-	CBI  0x18,0
-; 0000 00AC 					PORTB.3 = 1;
-	SBI  0x18,3
-; 0000 00AD 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00AE 					PORTB.1 = 0;
-	CBI  0x18,1
-; 0000 00AF 					PORTB.4 = 1;
-	SBI  0x18,4
-; 0000 00B0 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00B1 
-; 0000 00B2 					PORTB.2 = 0;
-	CBI  0x18,2
-; 0000 00B3 					PORTB.5 = 1;
-	SBI  0x18,5
-; 0000 00B4 					delay_ms(100);
-	RCALL SUBOPT_0x9
-; 0000 00B5 
-; 0000 00B6 					PORTB.3 = 0;
-	CBI  0x18,3
 ; 0000 00B7 					delay_ms(100);
 	RCALL SUBOPT_0x9
-; 0000 00B8 
-; 0000 00B9 					PORTB.4 = 0;
-	CBI  0x18,4
-; 0000 00BA 					delay_ms(100);
+; 0000 00B8 					PORTB.2 = 1;
+	SBI  0x18,2
+; 0000 00B9 					delay_ms(100);
 	RCALL SUBOPT_0x9
-; 0000 00BB 
-; 0000 00BC 					PORTB.5 = 0;
-	CBI  0x18,5
+; 0000 00BA 
+; 0000 00BB 					PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 00BC 					PORTB.3 = 1;
+	SBI  0x18,3
 ; 0000 00BD 					delay_ms(100);
 	RCALL SUBOPT_0x9
-; 0000 00BE 
-; 0000 00BF 					break;
-	RJMP _0x24
-; 0000 00C0 				}
-; 0000 00C1 			default:
-_0x89:
-; 0000 00C2 				{
-; 0000 00C3 					PORTB.0 = 1;
-	SBI  0x18,0
-; 0000 00C4 					delay_ms(500);
-	RCALL SUBOPT_0x2
-; 0000 00C5 					PORTB.0 = 0;
-	CBI  0x18,0
-; 0000 00C6 				}
-; 0000 00C7 		}
-_0x24:
+; 0000 00BE 					PORTB.1 = 0;
+	CBI  0x18,1
+; 0000 00BF 					PORTB.4 = 1;
+	SBI  0x18,4
+; 0000 00C0 					delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 00C1 
+; 0000 00C2 					PORTB.2 = 0;
+	CBI  0x18,2
+; 0000 00C3 					PORTB.5 = 1;
+	RCALL SUBOPT_0x8
+; 0000 00C4 					delay_ms(100);
+; 0000 00C5 
+; 0000 00C6 					PORTB.3 = 0;
+	CBI  0x18,3
+; 0000 00C7 					delay_ms(100);
+	RCALL SUBOPT_0x9
 ; 0000 00C8 
-; 0000 00C9 
-; 0000 00CA 	}
+; 0000 00C9 					PORTB.4 = 0;
+	CBI  0x18,4
+; 0000 00CA 					delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 00CB 
+; 0000 00CC 					PORTB.5 = 0;
+	RCALL SUBOPT_0xA
+; 0000 00CD 					delay_ms(100);
+; 0000 00CE 
+; 0000 00CF 					break;
+	RJMP _0x24
+; 0000 00D0 				}
+; 0000 00D1             case 4:
+_0x84:
+	CPI  R30,LOW(0x4)
+	LDI  R26,HIGH(0x4)
+	CPC  R31,R26
+	BRNE _0x9D
+; 0000 00D2                 {
+; 0000 00D3                   PORTB.0 = 1;
+	RCALL SUBOPT_0xB
+; 0000 00D4 				  PORTB.1 = 0;
+; 0000 00D5 				  PORTB.2 = 1;
+; 0000 00D6 				  PORTB.3 = 0;
+; 0000 00D7 				  PORTB.4 = 1;
+; 0000 00D8 				  PORTB.5 = 0;
+; 0000 00D9 				  delay_ms(100);
+; 0000 00DA 				  PORTB.0 = 0;
+	RCALL SUBOPT_0xC
+; 0000 00DB 			  	  PORTB.1 = 1;
+; 0000 00DC 				  PORTB.2 = 0;
+; 0000 00DD 				  PORTB.3 = 1;
+; 0000 00DE 				  PORTB.4 = 0;
+; 0000 00DF 				  PORTB.5 = 1;
+; 0000 00E0 				  delay_ms(100);
+; 0000 00E1 				  break;
+	RJMP _0x24
+; 0000 00E2                 }
+; 0000 00E3             case 5:
+_0x9D:
+	CPI  R30,LOW(0x5)
+	LDI  R26,HIGH(0x5)
+	CPC  R31,R26
+	BRNE _0x1A3
+; 0000 00E4                 {
+; 0000 00E5                   PORTB.0 = 1;
+	SBI  0x18,0
+; 0000 00E6                   PORTB.1 = 1;
+	SBI  0x18,1
+; 0000 00E7 				  delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 00E8                   PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 00E9 				  PORTB.1 = 0;
+	CBI  0x18,1
+; 0000 00EA 				  PORTB.2 = 1;
+	RCALL SUBOPT_0x5
+; 0000 00EB                   delay_ms(100);
+; 0000 00EC 				  PORTB.2 = 0;
+; 0000 00ED 				  PORTB.3 = 1;
+	RCALL SUBOPT_0x6
+; 0000 00EE 				  delay_ms(100);
+; 0000 00EF 				  PORTB.3 = 0;
+; 0000 00F0 			  	  PORTB.4 = 1;
+	RCALL SUBOPT_0x7
+; 0000 00F1                   delay_ms(100);
+; 0000 00F2 				  PORTB.4 = 0;
+; 0000 00F3 				  PORTB.5 = 1;
+	RCALL SUBOPT_0x8
+; 0000 00F4                   delay_ms(100);
+; 0000 00F5 				  PORTB.5 = 0;
+	RCALL SUBOPT_0xA
+; 0000 00F6 				  delay_ms(100);
+; 0000 00F7                   PORTB.4 = 1;
+	RCALL SUBOPT_0x7
+; 0000 00F8                   delay_ms(100);
+; 0000 00F9                   PORTB.4 = 0;
+; 0000 00FA                   PORTB.3 = 1;
+	RCALL SUBOPT_0x6
+; 0000 00FB                   delay_ms(100);
+; 0000 00FC                   PORTB.3 = 0;
+; 0000 00FD                   PORTB.2 = 1;
+	RCALL SUBOPT_0x5
+; 0000 00FE                   delay_ms(100);
+; 0000 00FF                   PORTB.2 = 0;
+; 0000 0100                   PORTB.1 = 1;
+	RCALL SUBOPT_0x4
+; 0000 0101                   delay_ms(100);
+; 0000 0102                   PORTB.1 = 0;
+; 0000 0103                   PORTB.0 = 1;
+	RCALL SUBOPT_0x3
+; 0000 0104                   delay_ms(100);
+; 0000 0105 
+; 0000 0106                   PORTB.0 = 1;
+	SBI  0x18,0
+; 0000 0107                   PORTB.1 = 1;
+	SBI  0x18,1
+; 0000 0108 				  delay_ms(100);
+	RCALL SUBOPT_0x9
+; 0000 0109                   PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 010A 				  PORTB.1 = 0;
+	CBI  0x18,1
+; 0000 010B 				  PORTB.2 = 1;
+	RCALL SUBOPT_0x5
+; 0000 010C                   delay_ms(100);
+; 0000 010D 				  PORTB.2 = 0;
+; 0000 010E 				  PORTB.3 = 1;
+	RCALL SUBOPT_0x6
+; 0000 010F 				  delay_ms(100);
+; 0000 0110 				  PORTB.3 = 0;
+; 0000 0111 			  	  PORTB.4 = 1;
+	RCALL SUBOPT_0x7
+; 0000 0112                   delay_ms(100);
+; 0000 0113 				  PORTB.4 = 0;
+; 0000 0114 				  PORTB.5 = 1;
+	RCALL SUBOPT_0x8
+; 0000 0115                   delay_ms(100);
+; 0000 0116 				  PORTB.5 = 0;
+	RCALL SUBOPT_0xA
+; 0000 0117 				  delay_ms(100);
+; 0000 0118                   PORTB.4 = 1;
+	RCALL SUBOPT_0x7
+; 0000 0119                   delay_ms(100);
+; 0000 011A                   PORTB.4 = 0;
+; 0000 011B                   PORTB.3 = 1;
+	RCALL SUBOPT_0x6
+; 0000 011C                   delay_ms(100);
+; 0000 011D                   PORTB.3 = 0;
+; 0000 011E                   PORTB.2 = 1;
+	RCALL SUBOPT_0x5
+; 0000 011F                   delay_ms(100);
+; 0000 0120                   PORTB.2 = 0;
+; 0000 0121                   PORTB.1 = 1;
+	RCALL SUBOPT_0x4
+; 0000 0122                   delay_ms(100);
+; 0000 0123                   PORTB.1 = 0;
+; 0000 0124                   PORTB.0 = 1;
+	RCALL SUBOPT_0x3
+; 0000 0125                   delay_ms(100);
+; 0000 0126 
+; 0000 0127                   PORTB.0 = 1;
+	RCALL SUBOPT_0xD
+; 0000 0128                   PORTB.1 = 1;
+; 0000 0129 				  delay_ms(300);
+; 0000 012A                   PORTB.0 = 0;
+; 0000 012B 				  PORTB.1 = 0;
+; 0000 012C                   PORTB.2 = 1;
+; 0000 012D                   PORTB.3 = 1;
+; 0000 012E                   delay_ms(300);
+; 0000 012F 				  PORTB.2 = 0;
+; 0000 0130 				  PORTB.3 = 0;
+; 0000 0131                   PORTB.4 = 1;
+; 0000 0132                   PORTB.5 = 1;
+; 0000 0133 				  delay_ms(300);
+; 0000 0134 				  PORTB.4 = 0;
+; 0000 0135 			  	  PORTB.5 = 0;
+; 0000 0136                   PORTB.3 = 1;
+; 0000 0137                   PORTB.2 = 1;
+; 0000 0138                   delay_ms(300);
+; 0000 0139 				  PORTB.3 = 0;
+; 0000 013A 				  PORTB.2 = 0;
+; 0000 013B                   PORTB.1 = 1;
+; 0000 013C                   PORTB.0 = 1;
+; 0000 013D                   delay_ms(300);
+; 0000 013E                   PORTB.1 = 0;
+; 0000 013F 				  PORTB.0 = 0;
+; 0000 0140 				  delay_ms(300);
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+; 0000 0141 
+; 0000 0142                   PORTB.0 = 1;
+	RCALL SUBOPT_0xD
+; 0000 0143                   PORTB.1 = 1;
+; 0000 0144 				  delay_ms(300);
+; 0000 0145                   PORTB.0 = 0;
+; 0000 0146 				  PORTB.1 = 0;
+; 0000 0147                   PORTB.2 = 1;
+; 0000 0148                   PORTB.3 = 1;
+; 0000 0149                   delay_ms(300);
+; 0000 014A 				  PORTB.2 = 0;
+; 0000 014B 				  PORTB.3 = 0;
+; 0000 014C                   PORTB.4 = 1;
+; 0000 014D                   PORTB.5 = 1;
+; 0000 014E 				  delay_ms(300);
+; 0000 014F 				  PORTB.4 = 0;
+; 0000 0150 			  	  PORTB.5 = 0;
+; 0000 0151                   PORTB.3 = 1;
+; 0000 0152                   PORTB.2 = 1;
+; 0000 0153                   delay_ms(300);
+; 0000 0154 				  PORTB.3 = 0;
+; 0000 0155 				  PORTB.2 = 0;
+; 0000 0156                   PORTB.1 = 1;
+; 0000 0157                   PORTB.0 = 1;
+; 0000 0158                   delay_ms(300);
+; 0000 0159                   PORTB.1 = 0;
+; 0000 015A 				  PORTB.0 = 0;
+; 0000 015B 				  delay_ms(300);
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+; 0000 015C 
+; 0000 015D                   PORTB.0 = 1;
+	RCALL SUBOPT_0xB
+; 0000 015E 				  PORTB.1 = 0;
+; 0000 015F 				  PORTB.2 = 1;
+; 0000 0160 				  PORTB.3 = 0;
+; 0000 0161 				  PORTB.4 = 1;
+; 0000 0162 				  PORTB.5 = 0;
+; 0000 0163 				  delay_ms(100);
+; 0000 0164 				  PORTB.0 = 0;
+	RCALL SUBOPT_0xC
+; 0000 0165 			  	  PORTB.1 = 1;
+; 0000 0166 				  PORTB.2 = 0;
+; 0000 0167 				  PORTB.3 = 1;
+; 0000 0168 				  PORTB.4 = 0;
+; 0000 0169 				  PORTB.5 = 1;
+; 0000 016A 				  delay_ms(100);
+; 0000 016B 				  break;
+	RJMP _0x24
+; 0000 016C 
+; 0000 016D                   PORTB.0 = 1;
+; 0000 016E 				  PORTB.1 = 0;
+; 0000 016F 				  PORTB.2 = 1;
+; 0000 0170 				  PORTB.3 = 0;
+; 0000 0171 				  PORTB.4 = 1;
+; 0000 0172 				  PORTB.5 = 0;
+; 0000 0173                   PORTB.0 = 0;
+; 0000 0174 			  	  PORTB.1 = 1;
+; 0000 0175 				  PORTB.2 = 0;
+; 0000 0176 				  PORTB.3 = 1;
+; 0000 0177 				  PORTB.4 = 0;
+; 0000 0178 				  PORTB.5 = 1;
+; 0000 0179 				  delay_ms(100);
+; 0000 017A 				  PORTB.0 = 0;
+; 0000 017B 			  	  PORTB.1 = 1;
+; 0000 017C 				  PORTB.2 = 0;
+; 0000 017D 				  PORTB.3 = 1;
+; 0000 017E 				  PORTB.4 = 0;
+; 0000 017F 				  PORTB.5 = 1;
+; 0000 0180                   PORTB.0 = 1;
+; 0000 0181 				  PORTB.1 = 0;
+; 0000 0182 				  PORTB.2 = 1;
+; 0000 0183 				  PORTB.3 = 0;
+; 0000 0184 				  PORTB.4 = 1;
+; 0000 0185 				  PORTB.5 = 0;
+; 0000 0186 				  delay_ms(100);
+; 0000 0187 
+; 0000 0188                 }
+; 0000 0189 			default:
+_0x1A3:
+; 0000 018A 				{
+; 0000 018B 					PORTB.0 = 1;
+	SBI  0x18,0
+; 0000 018C 					delay_ms(500);
+	RCALL SUBOPT_0x2
+; 0000 018D 					PORTB.0 = 0;
+	CBI  0x18,0
+; 0000 018E 				}
+; 0000 018F 		}
+_0x24:
+; 0000 0190 
+; 0000 0191 
+; 0000 0192 	}
 	RJMP _0x3
-; 0000 00CB }
-_0x8E:
-	RJMP _0x8E
+; 0000 0193 }
+_0x1A8:
+	RJMP _0x1A8
 ; .FEND
 
 	.CSEG
@@ -1500,16 +1770,14 @@ SUBOPT_0x2:
 	LDI  R27,HIGH(500)
 	RJMP _delay_ms
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:13 WORDS
 SUBOPT_0x3:
 	SBI  0x18,0
 	LDI  R26,LOW(100)
 	LDI  R27,0
-	RCALL _delay_ms
-	CBI  0x18,0
-	RET
+	RJMP _delay_ms
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 4 TIMES, CODE SIZE REDUCTION:10 WORDS
 SUBOPT_0x4:
 	SBI  0x18,1
 	LDI  R26,LOW(100)
@@ -1518,7 +1786,7 @@ SUBOPT_0x4:
 	CBI  0x18,1
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:18 WORDS
 SUBOPT_0x5:
 	SBI  0x18,2
 	LDI  R26,LOW(100)
@@ -1527,7 +1795,7 @@ SUBOPT_0x5:
 	CBI  0x18,2
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:18 WORDS
 SUBOPT_0x6:
 	SBI  0x18,3
 	LDI  R26,LOW(100)
@@ -1536,7 +1804,7 @@ SUBOPT_0x6:
 	CBI  0x18,3
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 6 TIMES, CODE SIZE REDUCTION:18 WORDS
 SUBOPT_0x7:
 	SBI  0x18,4
 	LDI  R26,LOW(100)
@@ -1545,20 +1813,80 @@ SUBOPT_0x7:
 	CBI  0x18,4
 	RET
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:2 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 7 TIMES, CODE SIZE REDUCTION:16 WORDS
 SUBOPT_0x8:
 	SBI  0x18,5
 	LDI  R26,LOW(100)
 	LDI  R27,0
-	RCALL _delay_ms
-	CBI  0x18,5
-	RET
+	RJMP _delay_ms
 
-;OPTIMIZER ADDED SUBROUTINE, CALLED 11 TIMES, CODE SIZE REDUCTION:18 WORDS
+;OPTIMIZER ADDED SUBROUTINE, CALLED 20 TIMES, CODE SIZE REDUCTION:36 WORDS
 SUBOPT_0x9:
 	LDI  R26,LOW(100)
 	LDI  R27,0
 	RJMP _delay_ms
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 5 TIMES, CODE SIZE REDUCTION:2 WORDS
+SUBOPT_0xA:
+	CBI  0x18,5
+	RJMP SUBOPT_0x9
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0xB:
+	SBI  0x18,0
+	CBI  0x18,1
+	SBI  0x18,2
+	CBI  0x18,3
+	SBI  0x18,4
+	RJMP SUBOPT_0xA
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:3 WORDS
+SUBOPT_0xC:
+	CBI  0x18,0
+	SBI  0x18,1
+	CBI  0x18,2
+	SBI  0x18,3
+	CBI  0x18,4
+	RJMP SUBOPT_0x8
+
+;OPTIMIZER ADDED SUBROUTINE, CALLED 2 TIMES, CODE SIZE REDUCTION:32 WORDS
+SUBOPT_0xD:
+	SBI  0x18,0
+	SBI  0x18,1
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+	CBI  0x18,0
+	CBI  0x18,1
+	SBI  0x18,2
+	SBI  0x18,3
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+	CBI  0x18,2
+	CBI  0x18,3
+	SBI  0x18,4
+	SBI  0x18,5
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+	CBI  0x18,4
+	CBI  0x18,5
+	SBI  0x18,3
+	SBI  0x18,2
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+	CBI  0x18,3
+	CBI  0x18,2
+	SBI  0x18,1
+	SBI  0x18,0
+	LDI  R26,LOW(300)
+	LDI  R27,HIGH(300)
+	RCALL _delay_ms
+	CBI  0x18,1
+	CBI  0x18,0
+	RET
 
 
 	.CSEG

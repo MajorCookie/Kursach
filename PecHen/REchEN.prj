@@ -127,8 +127,8 @@ WatchAVR8LAutoVariables=0
 UseEEPROMLocation0=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1200928264
-Build=32
+COFFileTimeStamp=1200929764
+Build=43
 [DefinedSymbolsDebug]
 Count=0
 [Compiler]
@@ -230,7 +230,7 @@ UseEEPROMLocation0=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=32
+Build=43
 IncludePath0=
 IncludePath1=
 IncludePath2=
@@ -448,7 +448,7 @@ UserProgWorkDir=
 [BuildInfoCompiler]
 L1=Build configuration: Debug
 L2=Chip: ATmega8
-L3=Clock frequency: 4.000000 MHz
+L3=Clock frequency: 4,000000 MHz
 L4=Program type: Application
 L5=Memory model: Small
 L6=Optimize for: Size
@@ -462,8 +462,8 @@ L13=Enhanced function parameters passing: Yes
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 31
-L18=842 line(s) compiled
+L17=Build: 43
+L18=1042 line(s) compiled
 L19=No errors
 L20=No warnings
 L21=
@@ -480,21 +480,21 @@ L31=Hardware Stack size: 768 byte(s)
 L32=
 L33=Heap size: 0 byte(s)
 L34=
-L35=EEPROM usage: 0 byte(s), 0.0% of EEPROM
+L35=EEPROM usage: 0 byte(s), 0,0% of EEPROM
 Lines=37
-L36=Program size: 201 words (402 bytes), 4.9% of FLASH
-L37=38 words (76 bytes), 15.9% reduced by Code Compression
+L36=Program size: 315 words (630 bytes), 7,7% of FLASH
+L37=177 words (354 bytes), 36,0% reduced by Code Compression
 [BuildInfoAssembler]
 Lines=12
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=D:\Workfiles\Git\Kursach\PecHen\Debug\List\REchEN.asm(1578): No EEPROM data, deleting D:\Workfiles\Git\Kursach\PecHen\Debug\Exe\REchEN.eep
+L4=D:\Users\Mikhael\Desktop\Kursach\PecHen\Debug\List\REchEN.asm(1906): No EEPROM data, deleting D:\Users\Mikhael\Desktop\Kursach\PecHen\Debug\Exe\REchEN.eep
 L5=
 L6=ATmega8 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
 L8=---------------------------------------------------------------
-L9=[.cseg] 0x000000 0x000192    402      0    402    8192   4.9%
+L9=[.cseg] 0x000000 0x000276    630      0    630    8192   7.7%
 L10=[.dseg] 0x000060 0x000160      0      0      0    1024   0.0%
 L11=[.eseg] 0x000000 0x000000      0      0      0     512   0.0%
 L12=
@@ -508,11 +508,11 @@ TimeStamp=1200928282
 Files=1
 F1=REcHEn.c
 [Bookmarks1]
-TimeStamp=1200928262
+TimeStamp=1200928346
 Row=0
 Column=0
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=27
 BK0=-1
 BK1=-1
 BK2=-1
@@ -523,13 +523,13 @@ BK6=-1
 BK7=-1
 BK8=-1
 BK9=-1
-[HeadersList]
-Files=1
-F1=D:\Workfiles\Git\Kursach\PecHen\REcHEn.c
-[Header1]
-Files=3
-F1=C:\cvavr\inc\mega8.h
-F2=C:\cvavr\inc\mega8_bits.h
-F3=C:\cvavr\inc\delay.h
 [FoldedCode1]
 Blocks=0
+[HeadersList]
+Files=1
+F1=D:\Users\Mikhael\Desktop\Kursach\PecHen\REcHEn.c
+[Header1]
+Files=3
+F1=D:\Program Files (x86)\AVR\inc\mega8.h
+F2=D:\Program Files (x86)\AVR\inc\mega8_bits.h
+F3=D:\Program Files (x86)\AVR\inc\delay.h

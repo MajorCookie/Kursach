@@ -33,8 +33,6 @@ void main(void)
 		3: snake move
 	*/
 	int MODE = 0;
-	int i;
-	int DEBUG_STATE = 0;
 
 	PORTD=0b00000001;
 	DDRD=0b00000000;
@@ -48,61 +46,21 @@ void main(void)
 
 	while (1){
 
+		PORTB.6 = 0;
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
-		if (PIND.0 == 1){
-			if (MODE>=3){//should be variable
-				MODE = 0;
-			}else{
-				MODE = MODE + 1;
+		if (PINC.0 == 0){
+			MODE++; //increasing mode variable
+			if (MODE>=6){
+				MODE = 0; //resetting mode if we're out of em
 			}
-		}
-		
-		if (MODE==0){
-			for( i = 1; i < 30; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(100);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(100);
-				}
-			}
-			PORTB.7 = 1; 
-			delay_ms(3000);
-		}else if (MODE==1){
-			PORTB.7 = 1; 
-			delay_ms(6000);
-		}else if (MODE=2){
-			for( i = 1; i < 15; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(500);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(500);
-				}
-			}
-			PORTB.7 = 1; 
-			delay_ms(3000);
-		}else if (MODE==3){
-			for( i = 1; i < 15; i++ ){
-				if (DEBUG_STATE==0){
-					DEBUG_STATE=1;
-					PORTB.7 = 1;
-					delay_ms(1000);
-				}else if (DEBUG_STATE==1){
-					DEBUG_STATE=0;
-					PORTB.7 = 0;
-					delay_ms(1000);
-				}
-			}
-			PORTB.7 = 0; 
-			delay_ms(3000);
+			PORTB.0 = 1; 
+			PORTB.1 = 1; 
+			PORTB.2 = 1; 
+			PORTB.3 = 1; 
+			PORTB.4 = 1; 
+			PORTB.5 = 1;
+			delay_ms(1500);
 		}
 
 		// party time !!!
@@ -113,122 +71,356 @@ void main(void)
 		PORTB.2 = 0; 
 		PORTB.3 = 0; 
 		PORTB.4 = 0; 
-		PORTB.5 = 0; 
+		PORTB.5 = 0;
 
 		switch(MODE){
 			case 0:
-				PORTB.0 = 1;
-				PORTB.1 = 1;
-				PORTB.2 = 1;
-				PORTB.3 = 1;
-				PORTB.4 = 1;
-				PORTB.5 = 1;
-				delay_ms(500);
-				PORTB.0 = 0;
-				PORTB.1 = 0;
-				PORTB.2 = 0;
-				PORTB.3 = 0;
-				PORTB.4 = 0;
-				PORTB.5 = 0;
-				delay_ms(500);
-				break;
+				{
+					PORTB.0 = 1;
+					PORTB.1 = 1;
+					PORTB.2 = 1;
+					PORTB.3 = 1;
+					PORTB.4 = 1;
+					PORTB.5 = 1;
+					delay_ms(500);
+					PORTB.0 = 0;
+					PORTB.1 = 0;
+					PORTB.2 = 0;
+					PORTB.3 = 0;
+					PORTB.4 = 0;
+					PORTB.5 = 0;
+					delay_ms(500);
+					break;
+				}
 			case 1:
-				// turning on 1st indicator
-				PORTB.0 = 1; 
-				delay_ms(100);
-				
-				// turning off 1st indicator, turning on 2nd indicator
-				PORTB.0 = 0;
-				PORTB.1 = 1; 
-				delay_ms(100);
-				
-				// turning off 2nd indicator, turning on 3rd indicator
-				PORTB.1 = 0;
-				PORTB.2 = 1; 
-				delay_ms(100);
+				{
+					// turning on 1st indicator
+					PORTB.0 = 1; 
+					delay_ms(100);
+					
+					// turning off 1st indicator, turning on 2nd indicator
+					PORTB.0 = 0;
+					PORTB.1 = 1; 
+					delay_ms(100);
+					
+					// turning off 2nd indicator, turning on 3rd indicator
+					PORTB.1 = 0;
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				// same ...
-				PORTB.2 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
+					// same ...
+					PORTB.2 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.3 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.4 = 0;
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				// turning off last indicator
-				PORTB.5 = 0;
-				delay_ms(100);
-				
-				break;
+					// turning off last indicator
+					delay_ms(100);
+                    PORTB.5 = 1;
+                    PORTB.4 = 0;
+                    delay_ms(100);
+                    PORTB.4 = 1;
+                    PORTB.3 = 0;
+                    delay_ms(100);
+                    PORTB.3 = 1;
+                    PORTB.2 = 0;
+                    delay_ms(100);
+                    PORTB.2 = 1;
+                    PORTB.1 = 0;
+                    delay_ms(100);
+                    PORTB.1 = 1;
+                    PORTB.0 = 0;
+                    delay_ms(100);
+                    PORTB.0 = 1;
+                    delay_ms(100);
+					
+					break;
+				}
 			case 2:
+				{
+					// turning on last indicator
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				// turning on last indicator
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.5 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.5 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.4 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
+					PORTB.3 = 0;
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				PORTB.2 = 1; 
-				delay_ms(100);
+					PORTB.2 = 0;
+					PORTB.1 = 1; 
+					delay_ms(100);
 
-				PORTB.2 = 0;
-				PORTB.1 = 1; 
-				delay_ms(100);
-
-				PORTB.1 = 0;
-				PORTB.0 = 1; 
-				delay_ms(100);
-				
-				// turning off first indicator
-				PORTB.0 = 0;
-				delay_ms(100);
-				
-				break;
+					PORTB.1 = 0;
+					PORTB.0 = 1; 
+					delay_ms(100);
+					
+					// turning off first indicator
+					PORTB.0 = 0;
+					delay_ms(100);
+					
+					break;
+				}
 			case 3:
-				PORTB.0 = 1; 
-				delay_ms(100);
-				PORTB.1 = 1; 
-				delay_ms(100);
-				PORTB.2 = 1; 
-				delay_ms(100);
+				{
+					PORTB.0 = 1; 
+					delay_ms(100);
+					PORTB.1 = 1; 
+					delay_ms(100);
+					PORTB.2 = 1; 
+					delay_ms(100);
 
-				PORTB.0 = 0;
-				PORTB.3 = 1; 
-				delay_ms(100);
-				PORTB.1 = 0;
-				PORTB.4 = 1; 
-				delay_ms(100);
+					PORTB.0 = 0;
+					PORTB.3 = 1; 
+					delay_ms(100);
+					PORTB.1 = 0;
+					PORTB.4 = 1; 
+					delay_ms(100);
 
-				PORTB.2 = 0;
-				PORTB.5 = 1; 
-				delay_ms(100);
+					PORTB.2 = 0;
+					PORTB.5 = 1; 
+					delay_ms(100);
 
-				PORTB.3 = 0;
-				delay_ms(100);
+					PORTB.3 = 0;
+					delay_ms(100);
 
-				PORTB.4 = 0;
-				delay_ms(100);
+					PORTB.4 = 0;
+					delay_ms(100);
 
-				PORTB.5 = 0;
-				delay_ms(100);
+					PORTB.5 = 0;
+					delay_ms(100);
 
-				break;
+					break;
+				}     
+            case 4:
+                {
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+				  break;
+                }       
+            case 5:
+                {
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+                  delay_ms(100);
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  delay_ms(100);
+				  PORTB.3 = 0;
+			  	  PORTB.4 = 1;
+                  delay_ms(100);
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+                  delay_ms(100);
+				  PORTB.5 = 0;
+				  delay_ms(100);
+                  PORTB.4 = 1;
+                  delay_ms(100);
+                  PORTB.4 = 0;
+                  PORTB.3 = 1;
+                  delay_ms(100);
+                  PORTB.3 = 0;
+                  PORTB.2 = 1;
+                  delay_ms(100);
+                  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  delay_ms(100);
+                  PORTB.1 = 0;
+                  PORTB.0 = 1;
+                  delay_ms(100); 
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+                  delay_ms(100);
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  delay_ms(100);
+				  PORTB.3 = 0;
+			  	  PORTB.4 = 1;
+                  delay_ms(100);
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+                  delay_ms(100);
+				  PORTB.5 = 0;
+				  delay_ms(100);
+                  PORTB.4 = 1;
+                  delay_ms(100);
+                  PORTB.4 = 0;
+                  PORTB.3 = 1;
+                  delay_ms(100);
+                  PORTB.3 = 0;
+                  PORTB.2 = 1;
+                  delay_ms(100);
+                  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  delay_ms(100);
+                  PORTB.1 = 0;
+                  PORTB.0 = 1;
+                  delay_ms(100);
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(300);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+                  PORTB.2 = 1;
+                  PORTB.3 = 1;
+                  delay_ms(300);
+				  PORTB.2 = 0;
+				  PORTB.3 = 0;
+                  PORTB.4 = 1;
+                  PORTB.5 = 1;
+				  delay_ms(300);
+				  PORTB.4 = 0;
+			  	  PORTB.5 = 0;
+                  PORTB.3 = 1;
+                  PORTB.2 = 1;
+                  delay_ms(300);
+				  PORTB.3 = 0;
+				  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  PORTB.0 = 1;
+                  delay_ms(300);
+        
+                  
+                  PORTB.0 = 1;
+                  PORTB.1 = 1;
+				  delay_ms(300);
+                  PORTB.0 = 0;
+				  PORTB.1 = 0;
+                  PORTB.2 = 1;
+                  PORTB.3 = 1;
+                  delay_ms(300);
+				  PORTB.2 = 0;
+				  PORTB.3 = 0;
+                  PORTB.4 = 1;
+                  PORTB.5 = 1;
+				  delay_ms(300);
+				  PORTB.4 = 0;
+			  	  PORTB.5 = 0;
+                  PORTB.3 = 1;
+                  PORTB.2 = 1;
+                  delay_ms(300);
+				  PORTB.3 = 0;
+				  PORTB.2 = 0;
+                  PORTB.1 = 1;
+                  PORTB.0 = 1;
+                  delay_ms(300);
+                  
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);          
+				  break;                  
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);  
+                  PORTB.0 = 1;
+				  PORTB.1 = 0;
+				  PORTB.2 = 1;
+				  PORTB.3 = 0;
+				  PORTB.4 = 1;
+				  PORTB.5 = 0;
+				  delay_ms(100);
+				  PORTB.0 = 0;
+			  	  PORTB.1 = 1;
+				  PORTB.2 = 0;
+				  PORTB.3 = 1;
+				  PORTB.4 = 0;
+				  PORTB.5 = 1;
+				  delay_ms(100);
+                }
 			default:
-				PORTB.0 = 1; 
-				delay_ms(500);
-				PORTB.0 = 0;
+				{
+					PORTB.0 = 1; 
+					delay_ms(500);
+					PORTB.0 = 0;
+				}
 		}
+	
+	
 	}
 }
