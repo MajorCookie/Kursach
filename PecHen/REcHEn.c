@@ -1,18 +1,4 @@
 /*******************************************************
-This program was created by the
-CodeWizardAVR V3.10 Advanced
-Automatic Program Generator
-© Copyright 1998-2014 Pavel Haiduc, HP InfoTech s.r.l.
-http://www.hpinfotech.com
-
-Project : 
-Version : 
-Date    : 16.12.2015
-Author  : 
-Company : 
-Comments: 
-
-
 Chip type               : ATmega8
 Program type            : Application
 AVR Core Clock frequency: 4,000000 MHz
@@ -27,10 +13,12 @@ Data Stack size         : 256
 void main(void)
 {
 	/*
-		0: default mode, all diods blink
-		1: switch 1 by 1 to right
-		2: switch 1 by 1 to left
-		3: snake move
+		0: Default mode, all diods blink
+		1: Switch 1 by 1 to right
+		2: Switch 1 by 1 to left
+		3: Snake move  
+        4: Blink alternately odd and even LEDs
+        4: Sequencing LEDs (one, two, blink)
 	*/
 	int MODE = 0;
 
@@ -46,7 +34,6 @@ void main(void)
 
 	while (1){
 
-		PORTB.6 = 0;
 		// checking button state, changing mode if needed
 		// 1 is off, 0 is on
 		if (PINC.0 == 0){
